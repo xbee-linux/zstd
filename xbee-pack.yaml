@@ -1,0 +1,30 @@
+schema-version: 1.0
+
+description: |
+
+  Zstandard est un algorithme de compression en temps réel qui fournit des ratios de compression élevés.
+  Il propose une très large gamme de rapports entre compression et vitesse tout en étant soutenu par un décodeur très rapide.
+
+  Programmes installés: zstd, zstdcat (lien vers zstd), zstdgrep, zstdless, zstdmt (lien vers zstd) et unzstd (lien vers zstd)
+  Bibliothèques installées: libzstd.so
+
+  zstd: Compresse ou décompresse des fichiers avec le format ZSTD
+  zstdgrep: Lance grep sur des fichiers compressés avec ZSTD
+  zstdless: Lance less sur des fichiers compressés avec ZSTD
+  libzstd: La bibliothèque implémentant la compression de données sans perte, avec l'algorithme ZSTD
+
+
+builder:
+  origin: ./zstd-builder
+  var:
+    version: "{% version %}"
+
+
+var:
+  version: 1.5.0
+
+
+provision:
+  - copy:
+      builder: zstd
+      todir: /usr
