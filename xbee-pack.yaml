@@ -14,10 +14,7 @@ description: |
   libzstd: La bibliothèque implémentant la compression de données sans perte, avec l'algorithme ZSTD
 
 
-builder:
-  origin: ./zstd-builder
-  var:
-    version: "{% version %}"
+builder: ./zstd-builder
 
 
 var:
@@ -27,4 +24,4 @@ var:
 provision:
   - copy:
       builder: zstd
-      todir: /usr
+      todir: /

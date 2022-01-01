@@ -8,11 +8,8 @@ const:
   exportDir: /opt/zstd
 
 
-var:
-  version: 1.5.0
+dependency: file
 
-dependency:
-  origin: https://github.com/xbee-linux/file.git
 
 provision:
   - url:
@@ -24,8 +21,8 @@ build:
       cmds:
         - make
 #        - make check
-        - make prefix={% exportDir %} install
-        - rm -v {% exportDir %}/lib/libzstd.a
+        - make prefix=/usr install DESTDIR={% exportDir %}
+        - rm -v {% exportDir %}/usr/lib/libzstd.a
       directory: "{% srcDir %}/zstd-{% version %}"
   - export: "{% exportDir %}"
 
