@@ -1,5 +1,7 @@
 schema-version: 1.0
 
+type: builder
+
 description: |
 
   Zstandard est un algorithme de compression en temps réel qui fournit des ratios de compression élevés.
@@ -13,15 +15,23 @@ description: |
   zstdless: Lance less sur des fichiers compressés avec ZSTD
   libzstd: La bibliothèque implémentant la compression de données sans perte, avec l'algorithme ZSTD
 
-
-builder: ./zstd-builder
-
-
-var:
+in:
   version: 1.5.0
+
+dependency: file
 
 
 provision:
-  - copy:
-      builder: zstd
-      todir: /
+  - url:
+      from: https://github.com/facebook/zstd/releases/download/v{% version %}/zstd-{% version %}.tar.gz
+      todir: "{% xbeeSrc %}"
+
+build:
+  - shell:
+      cmds:
+        - make
+        - make prefix=/usr install DESTDIR={% xbeeOut %}
+        - rm -v {% xbeeOut %}/usr/lib/libzstd.a
+      directory: "{% xbeeSrc %}/zstd-{% version %}"
+
+
