@@ -15,7 +15,7 @@ description: |
   zstdless: Lance less sur des fichiers compressés avec ZSTD
   libzstd: La bibliothèque implémentant la compression de données sans perte, avec l'algorithme ZSTD
 
-in:
+var:
   version: 1.5.0
 
 dependency: file
@@ -23,15 +23,15 @@ dependency: file
 
 provision:
   - url:
-      from: https://github.com/facebook/zstd/releases/download/v{% version %}/zstd-{% version %}.tar.gz
-      todir: "{% xbeeSrc %}"
+      from: https://github.com/facebook/zstd/releases/download/v{{ .version }}/zstd-{{ .version }}.tar.gz
+      todir: "{{ .xbee.src }}"
 
 build:
   - shell:
       cmds:
         - make
-        - make prefix=/usr install DESTDIR={% xbeeOut %}
-        - rm -v {% xbeeOut %}/usr/lib/libzstd.a
-      directory: "{% xbeeSrc %}/zstd-{% version %}"
+        - make prefix=/usr install DESTDIR={{ .xbee.out }}
+        - rm -v {{ .xbee.out }}/usr/lib/libzstd.a
+      directory: "{{ .xbee.src }}/zstd-{{ .version }}"
 
 
