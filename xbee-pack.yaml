@@ -22,9 +22,7 @@ builder: file
 
 
 provision:
-  - url:
-      from: https://github.com/facebook/zstd/releases/download/v{{ .version }}/zstd-{{ .version }}.tar.gz
-      todir: "{{ .xbee.src }}"
+  url: https://github.com/facebook/zstd/releases/download/v{{ .version }}/zstd-{{ .version }}.tar.gz
 
 build:
   - shell:
