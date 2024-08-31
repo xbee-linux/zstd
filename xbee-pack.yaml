@@ -16,13 +16,14 @@ description: |
   libzstd: La bibliothèque implémentant la compression de données sans perte, avec l'algorithme ZSTD
 
 var:
-  version: 1.5.0
+  xbee:
+    version: 1.5.0
 
 builder: file
 
 
 provision:
-  url: https://github.com/facebook/zstd/releases/download/v{{ .version }}/zstd-{{ .version }}.tar.gz
+  url: https://github.com/facebook/zstd/releases/download/v{{ .xbee.version }}/zstd-{{ .xbee.version }}.tar.gz
 
 build:
   - shell:
@@ -30,6 +31,6 @@ build:
         - make
         - make prefix=/usr install DESTDIR={{ .xbee.out }}
         - rm -v {{ .xbee.out }}/usr/lib/libzstd.a
-      directory: "{{ .xbee.src }}/zstd-{{ .version }}"
+      directory: "{{ .xbee.src }}/zstd-{{ .xbee.version }}"
 
 
