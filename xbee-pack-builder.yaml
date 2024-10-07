@@ -1,7 +1,5 @@
 schema-version: 1.0
 
-type: builder
-
 description: |
 
   Zstandard est un algorithme de compression en temps réel qui fournit des ratios de compression élevés.
